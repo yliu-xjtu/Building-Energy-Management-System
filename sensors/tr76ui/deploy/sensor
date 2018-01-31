@@ -1,0 +1,40 @@
+#!/bin/sh
+# /etc/init.d/sensor
+ 
+### BEGIN INIT INFO
+# Provides: sensor
+# Required-Start: $all
+# Required-Stop:
+# Default-Start: 2 3 4 5
+# Default-Stop: 0 1 6
+# Short-Description: sensor initscript
+# Description: This service is used to manage a sensor program
+### END INIT INFO
+ 
+ [ -x /home/pi/script/sensor_unblock.py ] || exit 5
+
+case "$1" in
+    start)
+        echo "Starting Sensor Program"
+        /home/pi/script/sensor_unblock.py &
+        ;;
+    stop)
+        echo "Stopping Sensor Program"
+        #killall sensor_unblock.py
+        kill $(ps aux | grep -m 1 'python /home/pi/script/sensor_unblock.py' | awk '{ print $2 }')
+        ;;
+    restart)
+        echo "Restarting Sensor Program"
+        kill $(ps aux | grep -m 1 'python /home/pi/script/sensor_unblock.py' | awk '{ print $2 }')
+        /home/pi/script/sensor_unblock.py &
+        ;;
+    status)
+        echo "PID of sensor program:"
+        ps aux | grep -m 1 'python /home/pi/script/sensor_unblock.py' | grep -v grep | awk '{ print $2 }'
+        ;;
+    *)
+        echo "Usage: service sensor start|stop"
+        exit 1
+        ;;
+esac
+exit 0

@@ -1,0 +1,16 @@
+{
+  "out_format": "csv", 
+  "sensor_id": "000001",
+  "mqtt": {
+    "username": "pkl", 
+    "host": "192.168.100.12", 
+    "password": "<replace with your mqtt password here>", 
+    "qos": 0
+  }, 
+  "version": "1.0", 
+  "debug": 1, 
+  "COM": {
+    "BUADRATE": 19200, 
+    "COMNAME": "/dev/ttyUSB0"
+  }
+}
