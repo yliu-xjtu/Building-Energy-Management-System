@@ -9,5 +9,5 @@ After uploading the code onto raspberry pi via SFTP or ZMODEM, we can use the fo
 ```shell
 cd deploy
 chmod +x deploy.sh
-./deploy.sh
+./deploy.sh <assigned_sensor_id>
 ```
